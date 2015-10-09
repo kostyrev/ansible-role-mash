@@ -1,0 +1,21 @@
+[{{ item }}]
+rpm_path = %(arch)s/os/Packages
+repodata_path = %(arch)s/os/
+source_path = source/SRPMS
+debuginfo = True
+# Do not create i386s in x86_64
+multilib = False
+multilib_method = devel
+# Use old-style sha hash for EPEL5 only
+hash = sha
+tag = {{ item }}
+# Next one is needed to prevent mixing of testing and release.
+inherit = False
+# for GPG signed rpm's
+#strict_keys = True
+#keys = bb3b9d78
+arches = x86_64
+delta = False
+hash_packages = False
+# This forces to also create older version of same package
+latest = False

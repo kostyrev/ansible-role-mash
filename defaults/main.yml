@@ -1,0 +1,5 @@
+---
+# defaults file for kostyrevaa.mash
+mash_buildhost: http://{{ hostvars[groups['koji_hub'][0]]['inventory_hostname'] }}/kojihub
+mash_repodir: file:///mnt/koji
+mash_repo_path: /mnt/custom-repo

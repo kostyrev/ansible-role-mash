@@ -1,0 +1,38 @@
+---
+# tasks file for kostyrevaa.mash
+- name: Install | Install required packages
+  yum: name={{item}} state=installed
+  with_items:
+    - mash
+  tags:
+    - mash
+
+- name: render /etc/mash/mash.conf
+  template: src=mash.conf.j2 dest=/etc/mash/mash.conf owner=root group=root mode=0644
+  tags:
+    - mash
+    - mash-conf
+
+- name: create mash repo path
+  file: path={{ mash_repo_path }}/{{ item }} state=directory
+  with_items:
+    - mash
+    - rpm
+  tags:
+    - mash
+    - mash-repos
+
+- name: render additional mash configs
+  template: src=repo.mash.j2 dest=/etc/mash/{{ item }}.mash owner=root group=root mode=0644
+  with_items: "{{ mash_repos | default([]) }}"
+  tags:
+    - mash
+    - mash-conf
+    - mash-repos
+
+- name: create dirs for custom mash repos
+  file: path={{ mash_repo_path }}/mash/{{ item }} state=directory
+  with_items: "{{ mash_repos | default([]) }}"
+  tags:
+    - mash
+    - mash-repos
