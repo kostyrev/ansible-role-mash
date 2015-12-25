@@ -14,7 +14,7 @@
     - mash-conf
 
 - name: create mash repo path
-  file: path={{ mash_repo_path }}/{{ item }} state=directory
+  file: path={{ mash_repo_path }}/{{ item }} state=directory owner=root group=wheel mode=2775
   with_items:
     - mash
     - rpm
