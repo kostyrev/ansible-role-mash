@@ -23,7 +23,7 @@
     - mash-repos
 
 - name: render additional mash configs
-  template: src=repo.mash.j2 dest=/etc/mash/{{ item }}.mash owner=root group=root mode=0644
+  template: src=repo.mash.j2 dest=/etc/mash/{{ item.name }}.mash owner=root group=root mode=0644
   with_items: "{{ mash_repos | default([]) }}"
   tags:
     - mash
