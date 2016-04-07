@@ -1,12 +1,12 @@
-Role Name
+kostyrevaa.mash
 =========
 
-A brief description of the role goes here.
+Ansible role to create mash configs for your custom repositories
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+None
 
 Role Variables
 --------------
@@ -24,8 +24,14 @@ Example Playbook
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
     - hosts: servers
+      vars:
+        mash_repos:
+          - name: sandbox-1-updates-testing
+          - name: sandbox-1-updates-candidate
+          - name: sandbox-1-updates
+          - name: sandbox-1-release
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: kostyrevaa.mash }
 
 License
 -------
