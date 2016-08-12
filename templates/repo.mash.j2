@@ -10,7 +10,7 @@ multilib_method = devel
 hash = sha
 tag = {{ item.name }}
 # Next one is needed to prevent mixing of testing and release.
-inherit = False
+inherit = {{ item.inherit | default('False') }}
 # for GPG signed rpm's
 #strict_keys = True
 #keys = bb3b9d78
